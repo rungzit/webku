@@ -10,6 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ==================== SCROLLBAR UNIVERSAL ==================== */
+.modal-content::-webkit-scrollbar {
+    display: none !important;
+}
+.modal-content {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+::-webkit-scrollbar-track {
+    background: #0f1015 !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #3a3b45 !important;
+    border-radius: 4px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #505261 !important; 
+}
+html {
+    scrollbar-width: thin !important;
+    scrollbar-color: #3a3b45 #0f1015 !important;
+}
         * {
             box-sizing: border-box;
             margin: 0;
