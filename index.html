@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warungxit - Digital Solutions</title>
+    
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- Menggunakan Font Inter agar teks terlihat tajam dan modern -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -455,9 +461,564 @@
             .main-card { padding: 40px 20px; margin-top: 20px; }
             .modal-content { max-height: 85vh; }
         }
+
+
+        /* ==================== FITUR DARK / LIGHT MODE ==================== */
+        :root {
+            --bg-main: linear-gradient(135deg, #090b14 0%, #111326 50%, #0c0d18 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --modal-bg: rgba(17, 19, 34, 0.85);
+            --overlay-bg: rgba(5, 6, 10, 0.8);
+            --text-main: #ffffff;
+            --text-soft: #cbd5e1;
+            --btn-bg: rgba(255, 255, 255, 0.06);
+            --btn-hover: rgba(255, 255, 255, 0.15);
+            --item-bg: rgba(255, 255, 255, 0.04);
+            --item-hover: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --shadow-main: rgba(0, 0, 0, 0.55);
+            --icon-color: #ffffff;
+        }
+
+        body.light-mode {
+            --bg-main: linear-gradient(135deg, #eef5ff 0%, #f7f2ff 28%, #e9fbff 55%, #fff7ed 78%, #f8fbff 100%);
+            --card-bg: rgba(255, 255, 255, 0.78);
+            --modal-bg: rgba(255, 255, 255, 0.92);
+            --overlay-bg: rgba(226, 232, 240, 0.68);
+            --text-main: #111827;
+            --text-soft: #475569;
+            --btn-bg: rgba(99, 102, 241, 0.08);
+            --btn-hover: rgba(99, 102, 241, 0.16);
+            --item-bg: rgba(99, 102, 241, 0.07);
+            --item-hover: rgba(99, 102, 241, 0.14);
+            --border-color: rgba(99, 102, 241, 0.18);
+            --shadow-main: rgba(79, 70, 229, 0.20);
+            --icon-color: #312e81;
+        }
+
+        body,
+        .main-card,
+        .menu-btn,
+        .modal-overlay,
+        .modal-content,
+        .product-item,
+        .profile-img,
+        .theme-toggle,
+        .title,
+        .footer-text,
+        .modal-title,
+        .about-text,
+        .product-name,
+        .close-btn {
+            transition: background 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.3s ease;
+        }
+
+
+
+        /* MAIN CARD: transisi dibuat cepat tanpa delay saat ganti tema */
+        .main-card,
+        .main-card .title,
+        .main-card .subtitle,
+        .main-card .menu-btn,
+        .main-card .footer-text,
+        .main-card .profile-img,
+        .main-card .icon-svg {
+            transition-duration: 0.05s !important;
+            transition-delay: 0s !important;
+        }
+
+        .main-card {
+            transition-property: background, border-color, box-shadow !important;
+            transition-timing-function: ease-out !important;
+        }
+
+        body {
+            background: var(--bg-main) !important;
+            background-size: 220% 220% !important;
+            color: var(--text-main) !important;
+            animation: warungxitGradientFlow 16s ease-in-out infinite;
+        }
+
+        @keyframes warungxitGradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body.light-mode::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(99, 102, 241, 0.14), transparent 32%),
+                radial-gradient(circle at 82% 22%, rgba(168, 85, 247, 0.12), transparent 34%),
+                radial-gradient(circle at 50% 86%, rgba(6, 182, 212, 0.12), transparent 36%);
+            opacity: 1;
+        }
+
+        .main-card {
+            background: var(--card-bg) !important;
+            border-color: var(--border-color) !important;
+            box-shadow: 0 30px 60px var(--shadow-main), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .title,
+        .menu-btn,
+        .modal-title,
+        .product-name,
+        .about-text {
+            color: var(--text-main) !important;
+        }
+
+        .footer-text,
+        .about-text p {
+            color: var(--text-soft) !important;
+        }
+
+        .menu-btn {
+            background: var(--btn-bg) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .menu-btn:hover {
+            background: var(--btn-hover) !important;
+        }
+
+        .menu-btn .icon-svg {
+            color: var(--icon-color) !important;
+        }
+
+        .modal-overlay {
+            background: var(--overlay-bg) !important;
+        }
+
+        .modal-content {
+            background: var(--modal-bg) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-main) !important;
+        }
+
+        .modal-title {
+            border-bottom-color: var(--border-color) !important;
+        }
+
+        .product-item {
+            background: var(--item-bg) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .product-item:hover {
+            background: var(--item-hover) !important;
+        }
+
+        body.light-mode .profile-img {
+            background: rgba(255, 255, 255, 0.92) !important;
+            border-color: rgba(99, 102, 241, 0.25) !important;
+        }
+
+        body.light-mode .blob-1 {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.24) 0%, transparent 66%);
+        }
+
+        body.light-mode .blob-2 {
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.21) 0%, transparent 66%);
+        }
+
+        body.light-mode .blob-3 {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.20) 0%, transparent 62%);
+        }
+
+        body.light-mode .blob-4 {
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.19) 0%, transparent 62%);
+        }
+
+        body.light-mode .blob-5 {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, transparent 62%);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 12px 30px var(--shadow-main);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.08) rotate(8deg);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.45);
+        }
+
+        body.light-mode ::-webkit-scrollbar-track {
+            background: #f1f5f9 !important;
+        }
+
+        body.light-mode ::-webkit-scrollbar-thumb {
+            background: #a5b4fc !important;
+        }
+
+        body.light-mode html {
+            scrollbar-color: #a5b4fc #f1f5f9 !important;
+        }
+
+        @media (max-width: 480px) {
+            .theme-toggle {
+                top: 16px;
+                right: 16px;
+                width: 46px;
+                height: 46px;
+            }
+        }
+
+
+        /* ==================== ANIMASI PERGANTIAN TEMA ALA GOOGLE PIXEL ==================== */
+        /* Menggunakan View Transition API: tema menyebar halus dari tombol toggle */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+
+        ::view-transition-old(root) {
+            z-index: 1;
+        }
+
+        ::view-transition-new(root) {
+            z-index: 2;
+        }
+
+        .theme-toggle {
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .theme-toggle::after {
+            content: "";
+            position: absolute;
+            inset: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.32);
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .theme-toggle.switching::after {
+            animation: pixelToggleRipple 0.52s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .theme-toggle.switching {
+            animation: pixelTogglePress 0.42s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .theme-toggle.switching #themeIcon {
+            animation: pixelIconMorph 0.58s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        @keyframes pixelToggleRipple {
+            0% {
+                opacity: 0.75;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(18);
+            }
+        }
+
+        @keyframes pixelTogglePress {
+            0% { transform: scale(1); }
+            42% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pixelIconMorph {
+            0% {
+                transform: rotate(0deg) scale(1);
+                opacity: 1;
+                filter: blur(0px);
+            }
+            45% {
+                transform: rotate(90deg) scale(0.72);
+                opacity: 0;
+                filter: blur(2px);
+            }
+            55% {
+                transform: rotate(-90deg) scale(0.72);
+                opacity: 0;
+                filter: blur(2px);
+            }
+            100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 1;
+                filter: blur(0px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-old(root),
+            ::view-transition-new(root),
+            .theme-toggle.switching,
+            .theme-toggle.switching::after,
+            .theme-toggle.switching #themeIcon {
+                animation: none !important;
+            }
+        }
+
+
+        /* ==================== RESPONSIVE UI SEMUA PERANGKAT ==================== */
+        html {
+            width: 100%;
+            min-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: clamp(14px, 3vw, 28px);
+        }
+
+        .main-card {
+            width: min(100%, 420px);
+            padding: clamp(28px, 6vw, 45px) clamp(18px, 5vw, 30px);
+            border-radius: clamp(22px, 6vw, 30px);
+        }
+
+        .profile-img {
+            width: clamp(96px, 26vw, 135px);
+            height: clamp(96px, 26vw, 135px);
+            margin-bottom: clamp(18px, 4vw, 24px);
+        }
+
+        .title {
+            font-size: clamp(1.55rem, 6vw, 1.85rem);
+        }
+
+        .subtitle {
+            font-size: clamp(0.82rem, 3.6vw, 0.95rem);
+            margin-bottom: clamp(24px, 7vw, 35px);
+        }
+
+        .menu-btn {
+            min-height: 58px;
+            padding: clamp(14px, 4vw, 16px) clamp(16px, 5vw, 22px);
+            gap: clamp(12px, 4vw, 16px);
+            border-radius: clamp(14px, 4vw, 16px);
+            font-size: clamp(0.92rem, 3.8vw, 1rem);
+        }
+
+        .footer-text {
+            margin-top: clamp(24px, 7vw, 35px);
+            font-size: clamp(0.7rem, 3vw, 0.78rem);
+        }
+
+        .theme-toggle {
+            top: max(14px, env(safe-area-inset-top));
+            right: max(14px, env(safe-area-inset-right));
+            width: clamp(44px, 11vw, 50px);
+            height: clamp(44px, 11vw, 50px);
+            font-size: clamp(1.05rem, 4vw, 1.25rem);
+        }
+
+        .modal-overlay {
+            padding: clamp(10px, 3vw, 20px);
+        }
+
+        .modal-content {
+            width: min(100%, 440px);
+            max-height: min(84vh, 760px);
+            max-height: min(84dvh, 760px);
+            padding: clamp(26px, 6vw, 35px) clamp(18px, 5vw, 26px);
+            border-radius: clamp(20px, 6vw, 28px);
+        }
+
+        .modal-title {
+            font-size: clamp(1.15rem, 4.8vw, 1.4rem);
+            padding-right: 42px;
+        }
+
+        .close-btn {
+            top: clamp(16px, 4vw, 22px);
+            right: clamp(16px, 4vw, 22px);
+        }
+
+        .product-list {
+            gap: clamp(10px, 3vw, 14px);
+        }
+
+        .product-item {
+            padding: clamp(11px, 3.5vw, 14px);
+            gap: clamp(11px, 3.5vw, 16px);
+            border-radius: clamp(14px, 4vw, 18px);
+        }
+
+        .product-img {
+            width: clamp(54px, 16vw, 68px);
+            height: clamp(54px, 16vw, 68px);
+            border-radius: clamp(12px, 3vw, 14px);
+            flex: 0 0 auto;
+        }
+
+        .product-name {
+            font-size: clamp(0.9rem, 3.7vw, 1rem);
+            line-height: 1.25;
+        }
+
+        .product-price {
+            font-size: clamp(0.8rem, 3.4vw, 0.9rem);
+        }
+
+        .about-text {
+            font-size: clamp(0.9rem, 3.8vw, 1rem);
+        }
+
+        /* HP kecil */
+        @media (max-width: 380px) {
+            body {
+                padding: 12px;
+                align-items: flex-start;
+            }
+
+            .main-card {
+                margin-top: 58px;
+            }
+
+            .menu-btn .icon-svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .menu-btn .icon-svg svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .product-item {
+                align-items: center;
+            }
+        }
+
+        /* HP umum */
+        @media (min-width: 381px) and (max-width: 600px) {
+            body {
+                align-items: flex-start;
+            }
+
+            .main-card {
+                margin-top: 60px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            body {
+                padding: 28px;
+            }
+
+            .main-card {
+                max-width: 460px;
+            }
+
+            .modal-content {
+                max-width: 520px;
+            }
+        }
+
+        /* Desktop besar */
+        @media (min-width: 1200px) {
+            .main-card {
+                max-width: 430px;
+            }
+
+            .modal-content {
+                max-width: 480px;
+            }
+        }
+
+        /* Landscape HP: supaya tidak kepotong */
+        @media (max-height: 620px) and (orientation: landscape) {
+            body {
+                align-items: flex-start;
+                padding-top: 18px;
+                padding-bottom: 18px;
+            }
+
+            .main-card {
+                margin-top: 0;
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+
+            .profile-img {
+                width: 84px;
+                height: 84px;
+                margin-bottom: 14px;
+            }
+
+            .subtitle {
+                margin-bottom: 18px;
+            }
+
+            .menu-btn {
+                min-height: 50px;
+                margin-bottom: 10px;
+            }
+
+            .footer-text {
+                margin-top: 18px;
+            }
+
+            .modal-content {
+                max-height: 88vh;
+                max-height: 88dvh;
+            }
+        }
+
+        /* Perangkat touch: hilangkan hover yang terlalu agresif */
+        @media (hover: none) and (pointer: coarse) {
+            .menu-btn:hover,
+            .product-item:hover,
+            .profile-img:hover,
+            .theme-toggle:hover {
+                transform: none !important;
+            }
+
+            .menu-btn:active,
+            .product-item:active,
+            .theme-toggle:active {
+                transform: scale(0.98) !important;
+            }
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Tombol Dark / Light Mode -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Ganti Tema">
+        <span id="themeIcon">🌙</span>
+    </button>
+
 
     <!-- Lapisan Objek Bergerak di Background (5 Aurora Blobs) -->
     <div class="bg-animation">
@@ -672,6 +1233,71 @@
                 closeModal(modalId);
             }
         }
+
+
+        function setThemeMode(willBeLight) {
+            const themeIcon = document.getElementById('themeIcon');
+            document.body.classList.toggle('light-mode', willBeLight);
+            localStorage.setItem('warungxit-theme', willBeLight ? 'light' : 'dark');
+            themeIcon.textContent = willBeLight ? '☀️' : '🌙';
+        }
+
+        function toggleTheme() {
+            const toggleBtn = document.querySelector('.theme-toggle');
+            const willBeLight = !document.body.classList.contains('light-mode');
+            const rect = toggleBtn.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            const endRadius = Math.hypot(
+                Math.max(x, window.innerWidth - x),
+                Math.max(y, window.innerHeight - y)
+            );
+
+            toggleBtn.classList.add('switching');
+
+            // Animasi ala Google Pixel: layar baru menyebar dari titik tombol toggle.
+            // Kalau browser belum mendukung View Transition API, tetap fallback halus tanpa patah.
+            if (!document.startViewTransition) {
+                setThemeMode(willBeLight);
+                setTimeout(() => toggleBtn.classList.remove('switching'), 520);
+                return;
+            }
+
+            const transition = document.startViewTransition(() => {
+                setThemeMode(willBeLight);
+            });
+
+            transition.ready.then(() => {
+                document.documentElement.animate(
+                    {
+                        clipPath: [
+                            `circle(0px at ${x}px ${y}px)`,
+                            `circle(${endRadius}px at ${x}px ${y}px)`
+                        ]
+                    },
+                    {
+                        duration: 760,
+                        easing: 'cubic-bezier(0.2, 0, 0, 1)',
+                        pseudoElement: '::view-transition-new(root)'
+                    }
+                );
+            });
+
+            transition.finished.finally(() => {
+                toggleBtn.classList.remove('switching');
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('warungxit-theme');
+
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeIcon').textContent = '☀️';
+            } else {
+                document.getElementById('themeIcon').textContent = '🌙';
+            }
+        });
     </script>
 
 </body>
